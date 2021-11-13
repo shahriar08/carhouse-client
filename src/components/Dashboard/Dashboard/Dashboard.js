@@ -25,9 +25,10 @@ import AdminRoute from '../../AdminRoute/AdminRoute';
 
 const drawerWidth = 200;
 function Dashboard(props) {
+
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
-    const { admin } = useAuth();
+    const { admin, logOut } = useAuth();
     const handleDrawerToggle = () => {
         setMobileOpen(!mobileOpen);
     };
@@ -37,14 +38,22 @@ function Dashboard(props) {
             <Toolbar />
             <Divider />
             <List>
-                <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link >
-                <Link to='/home'><Button color="inherit">Home</Button></Link >
-                <Link to={`${url}/order`}><Button color="inherit">My Order</Button></Link >
+                {/* <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link > */}
+                {!admin && <Box>
+                    <Link to='/home'><Button color="inherit">Home</Button></Link >
+                <Link to={`${url}/order`}><Button color="inherit">My Orders</Button></Link >
+                <Link to={`${url}/order`}><Button color="inherit">Review</Button></Link >
+                <Link to={`${url}/order`}><Button color="inherit">Pay</Button></Link >
+                <Button onClick={logOut} color="inherit">Logout</Button>
+                </Box>
+                }
 
                 {admin && <Box>
-                    <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link >
+                    <Link to={`${url}`}><Button color="inherit">Manage All Orders</Button></Link >
                     <Link to={`${url}/addCar`}><Button color="inherit">Add Car</Button></Link >
-                    <Link to={`${url}`}><Button color="inherit">Manage Orders</Button></Link >
+                    <Link to={`${url}`}><Button color="inherit">Manage Products</Button></Link >
+                    <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link >
+                    <Button onClick={logOut} color="inherit">Logout</Button>
                 </Box>}
             </List>
             <Divider />
@@ -116,7 +125,7 @@ function Dashboard(props) {
             >
                 <Toolbar />
                 <Switch>
-                    <Route exact path={path}>
+                    <Route path={path}>
                         <DashboardHome></DashboardHome>
                     </Route>
                     <AdminRoute path={`${path}/makeAdmin`}>

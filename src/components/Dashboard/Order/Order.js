@@ -31,19 +31,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
 
 const Order = () => {
-    const {user, token } = useAuth();
+    const {user} = useAuth();
     const [order,setOrder] = useState([]);
 
     useEffect(()=>{
         const url = `https://powerful-beyond-86436.herokuapp.com/orders?email=${user.email}`
-        fetch(url, {
-          headers: {
-              'authorization': `Bearer ${token}`
-          }
-      })
+        fetch(url)
         .then(res=>res.json())
         .then(data=>setOrder(data));
-    },[])
+    },)
     return (
         <div>
             <h4>order: {order.length}</h4>
