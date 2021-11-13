@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import {
-    getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, signOut,
+    getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, signInWithEmailAndPassword, updateProfile,signOut,
     createUserWithEmailAndPassword
 } from "firebase/auth";
 import initializeAuthentication from '../components/Firebase/firebase.init';
@@ -9,84 +9,116 @@ initializeAuthentication();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState('');
+    const [authError, setAuthError] = useState('');
     const [admin, setAdmin] =useState(false);
     const auth = getAuth();
     const googleProvider = new GoogleAuthProvider();
 
     const signInUsingGoogle = () => {
+        setIsLoading(true);
         signInWithPopup(auth, googleProvider)
             .then(result => {
-                setUser(result.user);
+                setAuthError('');
+                // setUser(result.user);
             })
             .catch(error => {
-                setError(error.message);
+                setAuthError(error.message);
+ 
             })
+            .finally(()=> setIsLoading(false));
     }
 
-    const signInUsingForm = (event) => {
-        event.preventDefault();
-        const email = event.target["email"].value;
-        const password = event.target["password"].value;
+    const signInUsingForm = (email, password, location, history) => {
+        // event.preventDefault();
+        setIsLoading(true);
+        // const email = event.target["email"].value;
+        // const password = event.target["password"].value;
 
-        signInWithEmailAndPassword(auth, email, password).then((result) => {
-            setUser(result.user);
+        signInWithEmailAndPassword(auth, email, password)
+        .then((result) => {
+            const destination = location?.state?.from || '/';
+            history.replace(destination);
+            setAuthError('');
         }).catch(error => {
-            const errorCode = error?.code;
-            const errorMessage =
-                errorCode === "auth/user-not-found"
-                    ? "Invalid Email or Password"
-                    : error.message;
-            setError(errorMessage);
+           setAuthError(error.message);
         })
+        .finally(()=> setIsLoading(false));
     }
-    const signupUsingForm = (event) => {
-        event.preventDefault();
-        const email = event.target["email"].value;
-        const password = event.target["password"].value;
+    const signupUsingForm = (email,password,name,history) => {
+        // event.preventDefault();
+        setIsLoading(true);
+        // const email = event.target["email"].value;
+        // const password = event.target["password"].value;
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
-                setUser(result.user);
+                setAuthError('');
+                const newUser= {email, displayName: name};
+                setUser(newUser);
+                saveUser(email,name);
+                updateProfile(auth.currentUser, {
+                    displayName: name
+                }).then(() => {
+                }).catch((error) => {
+                });
+                history.replace('/');
             })
             .catch((error) => {
-                const errorCode = error?.code;
-                const errorMessage =
-                    errorCode === "auth/user-not-found"
-                        ? "Invalid Email or Password"
-                        : error.message;
-                setError(errorMessage);
+                setAuthError(error.message);
             })
+            .finally(()=> setIsLoading(false));
     };
 
-    useEffect(()=>{
-        fetch(`https://powerful-beyond-86436.herokuapp.com/users/${user.email}`)
-        .then(res=>res.json())
-        .then(data=>setAdmin(data.admin))
-    },[user.email])
+    // useEffect(()=>{
+    //     fetch(`https://powerful-beyond-86436.herokuapp.com/users/${user.email}`)
+    //     .then(res=>res.json())
+    //     .then(data=>setAdmin(data.admin))
+    // },[user.email])
 
 
     const logOut = () => {
+        setIsLoading(true);
         signOut(auth)
             .then(() => {
-                setUser({});
+                // setUser({});
             })
+            .catch((error) =>{
+
+            })
+            .finally(() => setIsLoading(false));
     }
 
     useEffect(() => {
-        onAuthStateChanged(auth, (user) => {
+        const unsubscribe = onAuthStateChanged(auth, (user) => {
             if (user) {
                 setUser(user);
             }
-        })
+            else{
+                setUser({})
+            }
+            setIsLoading(false);
+        });
+        return() => unsubscribe;
     }, [])
 
-    // const saveUser = (email,displayName) =>{
-
-    // }
+    const saveUser = (email,displayName) =>{
+        const user = {email,displayName};
+        fetch('https://powerful-beyond-86436.herokuapp.com/users',{
+            method:'POST',
+            headers:{
+                'content-type': 'application/json'
+            },
+            body:JSON.stringify(user)
+        })
+        .then()
+    }
     return {
         user,
         admin,
         error,
+        isLoading,
+        authError,
         signupUsingForm,
         signInUsingGoogle,
         signInUsingForm,

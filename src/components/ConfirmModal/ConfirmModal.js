@@ -21,16 +21,16 @@ const style = {
 };
 
 const ConfirmModal = ({ open, handleClose, product}) => {
-    const { carName,model } = product;
+    const { carName,price } = product;
     const { user } = useAuth();
-    const initialInfo = { name: user.displayName, email: user.email,}
+    const initialInfo = { name: user.displayName, email: user.email,mobile:''}
     const [orderInfo,setOrderInfo] = useState(initialInfo);
 
     const handleConfirmSubmit = e => {
         const confirmOrder = {
             ...orderInfo,
             carName: carName,
-            carModel: model
+            carPrice: price
         }
 
         fetch('https://powerful-beyond-86436.herokuapp.com/orders',{
@@ -102,6 +102,7 @@ const ConfirmModal = ({ open, handleClose, product}) => {
                             id="outlined-disabled"
                             label="Owner Name"
                             onBlur={handleOnBlur}
+                            defaultValue={user.displayName}
                             name='name'
                             sx={{ width: '90%', m: 1 }}
                         />
@@ -109,6 +110,7 @@ const ConfirmModal = ({ open, handleClose, product}) => {
                             id="outlined-read-only-input"
                             label="Email"
                             name='email'
+                            defaultValue={user.email}
                             onBlur={handleOnBlur}
                             sx={{ width: '90%', m: 1 }}
                         />
