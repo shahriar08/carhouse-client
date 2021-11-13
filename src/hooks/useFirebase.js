@@ -5,23 +5,24 @@ import {
 } from "firebase/auth";
 import initializeAuthentication from '../components/Firebase/firebase.init';
 
+
 initializeAuthentication();
 
 const useFirebase = () => {
     const [user, setUser] = useState({});
     const [isLoading, setIsLoading] = useState(true);
-    const [error, setError] = useState('');
     const [authError, setAuthError] = useState('');
     const [admin, setAdmin] =useState(false);
     const auth = getAuth();
+    
     const googleProvider = new GoogleAuthProvider();
 
-    const signInUsingGoogle = () => {
+    const signInUsingGoogle = (location,history) => {
         setIsLoading(true);
         signInWithPopup(auth, googleProvider)
             .then(result => {
+                saveUser(user.email,user.displayName, 'PUT');
                 setAuthError('');
-                // setUser(result.user);
             })
             .catch(error => {
                 setAuthError(error.message);
@@ -31,11 +32,7 @@ const useFirebase = () => {
     }
 
     const signInUsingForm = (email, password, location, history) => {
-        // event.preventDefault();
         setIsLoading(true);
-        // const email = event.target["email"].value;
-        // const password = event.target["password"].value;
-
         signInWithEmailAndPassword(auth, email, password)
         .then((result) => {
             const destination = location?.state?.from || '/';
@@ -47,16 +44,13 @@ const useFirebase = () => {
         .finally(()=> setIsLoading(false));
     }
     const signupUsingForm = (email,password,name,history) => {
-        // event.preventDefault();
         setIsLoading(true);
-        // const email = event.target["email"].value;
-        // const password = event.target["password"].value;
         createUserWithEmailAndPassword(auth, email, password)
             .then((result) => {
                 setAuthError('');
                 const newUser= {email, displayName: name};
                 setUser(newUser);
-                saveUser(email,name);
+                saveUser(email,name, 'POST');
                 updateProfile(auth.currentUser, {
                     displayName: name
                 }).then(() => {
@@ -70,11 +64,11 @@ const useFirebase = () => {
             .finally(()=> setIsLoading(false));
     };
 
-    // useEffect(()=>{
-    //     fetch(`https://powerful-beyond-86436.herokuapp.com/users/${user.email}`)
-    //     .then(res=>res.json())
-    //     .then(data=>setAdmin(data.admin))
-    // },[user.email])
+    useEffect(()=>{
+        fetch(`https://powerful-beyond-86436.herokuapp.com/users/${user.email}`)
+        .then(res=>res.json())
+        .then(data=>setAdmin(data.admin))
+    },[user.email])
 
 
     const logOut = () => {
@@ -102,10 +96,10 @@ const useFirebase = () => {
         return() => unsubscribe;
     }, [])
 
-    const saveUser = (email,displayName) =>{
+    const saveUser = (email,displayName,method) =>{
         const user = {email,displayName};
         fetch('https://powerful-beyond-86436.herokuapp.com/users',{
-            method:'POST',
+            method: method,
             headers:{
                 'content-type': 'application/json'
             },
@@ -116,7 +110,6 @@ const useFirebase = () => {
     return {
         user,
         admin,
-        error,
         isLoading,
         authError,
         signupUsingForm,

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import Grid from '@mui/material/Grid';
-import { Alert, Button, Container} from '@mui/material';
+import {Button, Container} from '@mui/material';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
@@ -31,7 +31,6 @@ const PurchaseCar = () => {
             });
     }, []);
 
-
     return (
         <>
             <Container sx={{ flexGrow: 1 }}>
@@ -60,54 +59,8 @@ const PurchaseCar = () => {
                             image={product.image}
                             alt="green iguana"
                         />
-                        {/*<Box
-                        component="form"
-                        sx={{
-                            '& .MuiTextField-root': { m: 1, width: '25ch' },
-                        }}
-                        noValidate
-                        autoComplete="off"
-                    >
-
-                         <form onSubmit={handleConfirm}> 
-                            <TextField
-                                id="outlined-required"
-                                label="Name"
-                                defaultValue={product.carName}
-                                sx={{width:'90%',m:1}}
-                            />
-                            <TextField
-
-                                id="outlined-disabled"
-                                label="Email"
-                                sx={{width:'90%',m:1}}
-                            />
-                            <TextField
-                                id="outlined-password-input"
-                                label="Mobile No"
-                                sx={{width:'90%',m:1}}
-                            />
-                            <TextField
-                                id="outlined-read-only-input"
-                                label="Address"
-                                sx={{width:'90%',m:1}}
-                            />
-                            <TextField
-                                id="outlined-number"
-                                label="NID Number"
-                                sx={{width:'90%',m:1}}
-
-                            />
-
-                            <Typography>
-                                <Button onSubmit={handleConfirm} variant="contained">Confirm</Button>
-                            </Typography>
-
-                        </form> 
-                    </Box>*/}
 
                     </Grid>
-
                 </Grid>
                 <Typography>
                     <Button onClick={handleOpen} variant="contained">Confirm Order</Button>
