@@ -123,7 +123,7 @@ const ConfirmModal = ({ open, handleClose, product}) => {
                         />
 
                         <Typography>
-                            <Button type="submit" variant="contained">Confirm</Button>
+                            <Button style={{ backgroundColor: '#17B978', color: '#fff'}} type="submit" variant="contained">Confirm</Button>
                         </Typography>
                     </form>
                 </Box>

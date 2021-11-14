@@ -22,6 +22,10 @@ import MakeAdmin from '../MakeAdmin/MakeAdmin';
 import AddCar from '../AddCar/AddCar';
 import useAuth from '../../../hooks/useAuth';
 import AdminRoute from '../../AdminRoute/AdminRoute';
+import PaymentMethod from '../../PaymentMethod/PaymentMethod';
+import ManageOrder from '../ManageOrder/ManageOrder';
+import ManageProducts from '../ManageProducts/ManageProducts';
+import AddReviews from '../../AddReviews/AddReviews';
 
 const drawerWidth = 200;
 function Dashboard(props) {
@@ -34,30 +38,41 @@ function Dashboard(props) {
     };
     let { path, url } = useRouteMatch();
     const drawer = (
-        <div>
-            <Toolbar />
+        <div >
+            <Toolbar style={{ backgroundColor: '#17B978' }} />
             <Divider />
             <List>
-                {/* <Link to={`${url}`}><Button color="inherit">Dashboard</Button></Link > */}
                 {!admin && <Box>
-                    <Link to='/home'><Button color="inherit">Home</Button></Link >
-                <Link to={`${url}/order`}><Button color="inherit">My Orders</Button></Link >
-                <Link to={`${url}/order`}><Button color="inherit">Review</Button></Link >
-                <Link to={`${url}/order`}><Button color="inherit">Pay</Button></Link >
-                <Button onClick={logOut} color="inherit">Logout</Button>
+                    <List><Link style={{ textDecoration: 'none', m: 2 }} to='/home'><Button style={{ backgroundColor: '#17B978', color: '#fff' }} color="inherit">Home</Button></Link ></List>
+
+                    <List><Link style={{ textDecoration: 'none', m: 2 }} to={`${url}`}><Button style={{ backgroundColor: '#17B978', color: '#fff' }} color="inherit">My Orders</Button></Link ></List>
+
+                    <List><Link style={{ textDecoration: 'none', m: 2 }} to={`${url}/addRating`}><Button style={{ backgroundColor: '#17B978', color: '#fff' }} color="inherit">Review</Button></Link ></List>
+
+                    <List> <Link style={{ textDecoration: 'none', m: 2 }} to={`${url}/pay`}><Button style={{ backgroundColor: '#17B978', color: '#fff' }} color="inherit">Pay</Button></Link ></List>
+
+                    <Button style={{ backgroundColor: '#17B978', color: '#fff' }} onClick={logOut} color="inherit">Logout</Button>
                 </Box>
                 }
 
-                {admin && <Box>
-                    <Link to={`${url}`}><Button color="inherit">Manage All Orders</Button></Link >
-                    <Link to={`${url}/addCar`}><Button color="inherit">Add Car</Button></Link >
-                    <Link to={`${url}`}><Button color="inherit">Manage Products</Button></Link >
-                    <Link to={`${url}/makeAdmin`}><Button color="inherit">Make Admin</Button></Link >
-                    <Button onClick={logOut} color="inherit">Logout</Button>
-                </Box>}
-            </List>
+                {
+                    admin && <Box>
+                        <List><Link style={{ textDecoration: 'none', m: 2 }} to={`${url}/manageOrder`}><Button style={{ backgroundColor: '#17B978', color: '#fff' }} color="inherit">Manage All Orders</Button></Link ></List>
+
+                        <List><Link style={{ textDecoration: 'none', m: 2 }} to={`${url}/addCar`}><Button style={{ backgroundColor: '#17B978', color: '#fff' }} color="inherit">Add Car</Button></Link ></List>
+
+                        <List><Link style={{ textDecoration: 'none' }} to={`${url}/manageProducts`}><Button style={{ backgroundColor: '#17B978', color: '#fff' }} color="inherit">Manage Products</Button></Link ></List>
+
+                        <List><Link style={{ textDecoration: 'none' }} to={`${url}/makeAdmin`}><Button style={{ backgroundColor: '#17B978', color: '#fff' }} color="inherit">Make Admin</Button></Link ></List>
+
+                        <Button style={{ backgroundColor: '#17B978', color: '#fff' }} onClick={logOut} color="inherit">Logout</Button>
+                    </Box>
+                }
+            </List >
             <Divider />
-        </div>
+
+
+        </div >
     );
 
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -67,9 +82,11 @@ function Dashboard(props) {
             <CssBaseline />
             <AppBar
                 position="fixed"
+                style={{ backgroundColor: '#17B978' }}
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
+                    ml: { sm: `${drawerWidth}px` }
+
                 }}
             >
                 <Toolbar>
@@ -82,7 +99,7 @@ function Dashboard(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
+                    <Typography variant="h6" style={{ backgroundColor: '#17B978' }} noWrap component="div">
                         Dashboard
                     </Typography>
                 </Toolbar>
@@ -125,11 +142,24 @@ function Dashboard(props) {
             >
                 <Toolbar />
                 <Switch>
-                    <Route path={path}>
+                    <Route exact path={path}>
                         <DashboardHome></DashboardHome>
                     </Route>
+                    <Route path={`${path}/pay`}>
+                        <PaymentMethod></PaymentMethod>
+                    </Route>
+                    <Route path={`${path}/addRating`}>
+                        <AddReviews />
+                    </Route>
+
                     <AdminRoute path={`${path}/makeAdmin`}>
                         <MakeAdmin />
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/manageOrder`}>
+                        <ManageOrder />
+                    </AdminRoute>
+                    <AdminRoute path={`${path}/manageProducts`}>
+                        <ManageProducts />
                     </AdminRoute>
 
                     <AdminRoute path={`${path}/addCar`}>

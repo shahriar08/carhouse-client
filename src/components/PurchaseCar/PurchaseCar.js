@@ -39,14 +39,17 @@ const PurchaseCar = () => {
                         <Card sx={{ minWidth: 250, border: 0, boxShadow: 0 }}>
 
                             <CardContent>
-                                <Typography variant="h2" component="div">
-                                    {product.carName}
+                                <Typography sx={{ fontWeight: 'bold' }} variant="h4" component="div">
+                                    Car Name: {product.carName}
                                 </Typography>
-                                <Typography variant="body2" color="text.secondary">
-                                    {product.price}
+                                <Typography sx={{ fontWeight: 'bold' }} variant="body1" color="text.secondary">
+                                    Car Price: {product.price}
                                 </Typography>
+                                <Typography sx={{ fontWeight: 'bold' }} variant="body2" color="text.secondary">
+                                    Car Mode: {product.model}
+                                </Typography><br />
                                 <Typography variant="body2" color="text.secondary">
-                                    {product.model}
+                                    <span style={{ fontWeight: 'bold' }}>Car Details: </span> {product.carDetails}
                                 </Typography>
 
                             </CardContent>
@@ -63,7 +66,7 @@ const PurchaseCar = () => {
                     </Grid>
                 </Grid>
                 <Typography>
-                    <Button onClick={handleOpen} variant="contained">Confirm Order</Button>
+                    <Button style={{ backgroundColor: '#17B978', color: '#fff'}} onClick={handleOpen} variant="contained">Confirm Order</Button>
                 </Typography>
 
             </Container>

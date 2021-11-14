@@ -36,7 +36,7 @@ const MakeAdmin = () => {
                 <TextField
                     sx={{ width: '50%' }}
                     id="outlined-basic" label="Email" type="email" onBlur={handleOnBlur} variant="outlined" />
-                <Button type="submit" variant="contained">Add Admin</Button>
+                <Button style={{ backgroundColor: '#17B978', color: '#fff'}} type="submit" variant="contained">Add Admin</Button>
             </form>
             {success &&  <Alert severity="success">Admin Added Successfully</Alert>}
         </div>

@@ -39,9 +39,9 @@ const Register = () => {
     return (
 
         <Container>
-            <Grid container spacing={2}>
+            <Grid sx={{ justifyContent: 'center' }} container spacing={2}>
                 <Grid item sx={{ mt: 8 }} xs={12} md={6}>
-                    <Typography variant="body1" gutterBottom>Register</Typography>
+                    <Typography variant="h5" gutterBottom>Register Here</Typography>
                     {!isLoading && <form onSubmit={handleLoginSubmit}>
                         <TextField
                             sx={{ width: '75%', m: 1 }}
@@ -76,12 +76,12 @@ const Register = () => {
                             onBlur={handleOnBlur}
                             variant="standard" />
 
-                        <Button sx={{ width: '75%', m: 1 }} type="submit" variant="contained">Register</Button>
-                        <Button type="button" variant="contained" onClick={handleGoogleLogin}>Google sign in</Button>
+                        <Button style={{ backgroundColor: '#17B978', color: '#fff' }} sx={{ width: '75%', m: 1 }} type="submit" variant="contained">Register</Button>
+                        <Button style={{ backgroundColor: '#17B978', color: '#fff' }} sx={{ width: '75%', m: 1 }} type="button" variant="contained" onClick={handleGoogleLogin}>Google sign in</Button><br />
                         <NavLink
                             style={{ textDecoration: 'none' }}
                             to="/login">
-                            <Button variant="text">Already Registered? Please Login</Button>
+                            <Button style={{ color: '#17B978' }} variant="text">Already Registered? Please Login</Button>
                         </NavLink>
                     </form>}
                     {isLoading && <CircularProgress />}

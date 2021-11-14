@@ -20,19 +20,21 @@ const CarCollections = (props) => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Container>
-                <Typography sx={{ fontWeight: 500, m: 2, color: 'success.main' }} variant="h6" component="div">
-                    OUR SERVICES
+                <Typography sx={{ fontWeight: 600, p: 4, mt: 5, textAlign: 'center', backgroundColor: '#17B978', color: '#fff', borderRadius: 16 }} variant="h4" component="div">
+                    Our Best Selling Cars
                 </Typography>
-                <Typography sx={{ fontWeight: 600, m: 5 }} variant="h4" component="div">
-                    Services We Provide
+                <Typography sx={{ fontWeight: 500, m: 2, color: 'black', textAlign: 'center' }} variant="h5" component="div">
+                    Find yours
                 </Typography>
                 <Grid container spacing={{ xs: 2, md: 3 }} columns={{ xs: 4, sm: 8, md: 12 }}>
+
                     {
                         products.map(product => <CarCollection
                             key={product.id}
                             product={product}
                         ></CarCollection>)
                     }
+
                 </Grid>
             </Container>
         </Box>

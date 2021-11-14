@@ -16,25 +16,25 @@ const CarCollection = (props) => {
     };
     return (
         <Grid item xs={4} sm={4} md={4}>
-            <Card sx={{ minWidth: 275, border: 0, boxShadow: 0 }}>
+            <Card sx={{ minWidth: 275, border: 0, boxShadow: 3  }}>
                 <CardMedia
                     component="img"
-                    style={{ width: 'auto', height: '80px', margin: '0 auto' }}
+                    style={{ width: '1', height: '160px', margin: '0 auto' }}
                     image={image}
                     alt="green iguana"
                 />
                 <CardContent>
-                    <Typography variant="h5" component="div">
+                    <Typography sx={{ fontWeight: 'bold'}} variant="h5" component="div">
                         {carName}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {price}
+                    <Typography sx={{ fontWeight: 'bold'}} variant="body2" color="black">
+                        Price: {price}
                     </Typography>
-                    <Typography variant="body2" color="text.secondary">
-                        {model}
+                    <Typography variant="body2" color="black">
+                        Car model: {model}
                     </Typography>
                     <Typography>
-                    <Button onClick={handleDoctorClick} variant="contained">Buy Now</Button>
+                    <Button sx={{ mt: 1 }} onClick={handleDoctorClick} style={{ backgroundColor: '#17B978', color: '#fff'}} variant="contained">Buy Now</Button>
                     </Typography>
                 </CardContent>
             </Card>

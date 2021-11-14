@@ -12,6 +12,7 @@ import CarCollections from "./components/Home/CarCollections/CarCollections";
 import Home from "./components/Home/Home/Home";
 import Layout from "./components/Layout/Layout";
 import Login from "./components/Login/Login";
+import NotFound from "./components/NotFound/NotFound";
 import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import PurchaseCar from "./components/PurchaseCar/PurchaseCar";
 import Register from "./components/Register/Register";
@@ -30,10 +31,19 @@ function App() {
               <Home />
             </Route>
             <Route path="/login">
-              <Login />
+              <Layout>
+                <Login />
+              </Layout>
             </Route>
             <Route path="/register">
-              <Register />
+              <layout>
+                <Register />
+              </layout>
+            </Route>
+            <Route path="/car-collection">
+              <Layout>
+                <CarCollections />
+              </Layout>
             </Route>
             <PrivateRoute path="/dashboard">
               <Dashboard />
@@ -44,13 +54,15 @@ function App() {
                 <PurchaseCar />
               </Layout>
             </PrivateRoute>
-            <Route path="/car-collection">
-              <Layout>
-                <CarCollections />
-              </Layout>
-            </Route>
-            <Route path="/dashboard/order">
+
+            <PrivateRoute path="/dashboard/orders">
               <Order></Order>
+            </PrivateRoute>
+
+            <Route path="*">
+              <Layout>
+                <NotFound />
+              </Layout>
             </Route>
           </Switch>
         </Router>
