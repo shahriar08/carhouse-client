@@ -23,7 +23,7 @@ const Testimonial = () => {
     return (
         <Box>
             <Container>
-                <Typography sx={{ fontWeight: 600, p: 4, mt: 5, textAlign: 'center', backgroundColor: '#17B978', color: '#fff' ,borderRadius: 16 }} variant="h4" component="div">
+                <Typography sx={{ fontWeight: 600, p: 2, mt: 5, textAlign: 'center', backgroundColor: '#17B978', color: '#fff' ,borderRadius: 16 }} variant="h4" component="div">
                     Our Customer Review
                 </Typography>
                 <Carousel breakPoints={breakPoints}>

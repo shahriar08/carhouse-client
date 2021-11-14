@@ -20,7 +20,7 @@ const CarCollections = (props) => {
     return (
         <Box sx={{ flexGrow: 1 }}>
             <Container>
-                <Typography sx={{ fontWeight: 600, p: 4, mt: 5, textAlign: 'center', backgroundColor: '#17B978', color: '#fff', borderRadius: 16 }} variant="h4" component="div">
+                <Typography sx={{ fontWeight: 600, p: 2, mt: 5, textAlign: 'center', backgroundColor: '#17B978', color: '#fff', borderRadius: 16 }} variant="h4" component="div">
                     Our Best Selling Cars
                 </Typography>
                 <Typography sx={{ fontWeight: 500, m: 2, color: 'black', textAlign: 'center' }} variant="h5" component="div">
