@@ -1,7 +1,8 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Container, Typography, TextField, Button, CircularProgress, Alert } from '@mui/material';
 import { useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import { isEmpty } from "lodash";
 import { NavLink } from 'react-router-dom';
 import { Grid } from '@mui/material';
 const Register = () => {
@@ -35,7 +36,14 @@ const Register = () => {
                 history.push(redirect_url);
             })
     }
+    useEffect(() => {
+        if (!isEmpty(user)) {
+            let path = location.state && location.state.from && location.state.from.pathname;
+            path = path ?? "/home";
+            history.push(path);
+        }
 
+    }, [user]);
     return (
 
         <Container>

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-
+import React, { useEffect, useState } from 'react';
+import { isEmpty } from "lodash";
 import {NavLink, useHistory, useLocation } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import { Grid } from '@mui/material';
@@ -33,8 +33,16 @@ const Login = () => {
         e.preventDefault();
     }
 
-    return (
+    useEffect(() => {
+        if (!isEmpty(user)) {
+            let path = location.state && location.state.from && location.state.from.pathname;
+            path = path ?? "/home";
+            history.push(path);
+        }
 
+    }, [user]);
+
+    return (
         <Container>
             <Grid sx={{ justifyContent: 'center' }} container spacing={2}>
                 <Grid item sx={{ mt: 8 }} xs={12} md={6}>
