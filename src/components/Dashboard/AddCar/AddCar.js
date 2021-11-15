@@ -6,7 +6,7 @@ import { Box, Button, Container } from '@mui/material';
 const AddCar = () => {
     
 
-    const { register, handleSubmit, watch, errors } = useForm();
+    const { handleSubmit} = useForm();
     const [imageURL, setIMageURL] = useState(null);
     const [name, setCarName] = useState('');
     const [details, setDetails] = useState('');
@@ -19,7 +19,7 @@ const AddCar = () => {
             price: price,
             model: model,
             image: imageURL,
-            CarDetails:details,
+            carDetails:details,
         };
         const url = `https://powerful-beyond-86436.herokuapp.com/addCar`;
 
@@ -72,7 +72,7 @@ const AddCar = () => {
                 </Box>
                 <Box sx={{m:2}} className="col-6">
                     <label className="my-1 mr-2 text-dark" for="inlineFormInputName2">Car Details</label>
-                    <input onChange={event => setDetails(parseInt(event.target.value))} type="text" className="form-control mb-2 mr-sm-2" name="details" id="inlineFormInputName2" placeholder="Car Details"></input>
+                    <input onChange={event => setDetails((event.target.value))} type="text" className="form-control mb-2 mr-sm-2" name="details" id="inlineFormInputName1" placeholder="Car Details"></input>
                 </Box>
                 <Box sx={{m:2}} className="col-6">
                     <label style={{color:'red'}} className="my-1 mr-2" for="inlineFormInputName4"><small className='text-danger fw-bold'>Image take Some Time To Upload Then Press Add Review</small></label><br />

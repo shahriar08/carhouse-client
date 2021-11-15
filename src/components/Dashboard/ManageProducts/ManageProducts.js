@@ -32,16 +32,32 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   }));
 
 const ManageProducts = () => {
-    const [order,setOrder] = useState([]);
-
+    const [product,setProduct] = useState([]);
+    const [services,setServices]= useState([]);
     useEffect(()=>{
         fetch('https://powerful-beyond-86436.herokuapp.com/car-collection')
         .then(res=>res.json())
-        .then(data=>setOrder(data));
+        .then(data=>setProduct(data));
     },)
+
+    const handleDeleteCar = id => {
+      const url = `https://powerful-beyond-86436.herokuapp.com/car-collection/${id}`;
+      fetch(url,{
+        method: 'DELETE'
+      })
+      .then(res=>res.json())
+      .then(data=>{
+        if(data.deletedCount){
+          alert('Car Item Deleted')
+          const remaining = services.filter(service => service._id !== id);
+          setServices(remaining);
+        }
+
+      })
+    }
     return (
         <div>
-            <h4>Total Product : {order.length}</h4>
+            <h4>Total Product : {product.length}</h4>
             
     <TableContainer component={Paper}>
       <Table sx={{ minWidth: 700 }} aria-label="customized table">
@@ -58,7 +74,7 @@ const ManageProducts = () => {
           </TableRow>
         </TableHead>
         <TableBody>
-          {order.map((row) => (
+          {product.map((row) => (
             <StyledTableRow key={row._id}>
               <StyledTableCell component="th" scope="row">
                 {row.carName}
@@ -67,7 +83,7 @@ const ManageProducts = () => {
               <StyledTableCell align="right">{row.model}</StyledTableCell>
               <StyledTableCell align="right">{row.price}</StyledTableCell>
               <StyledTableCell align="right">{row.carDetails}</StyledTableCell>
-              <StyledTableCell align="right"><Button style={{ backgroundColor: '#17B978',color:'#fff' }} variant="contained">Delete</Button></StyledTableCell>
+              <StyledTableCell align="right"><Button onClick={() => handleDeleteCar(row._id)} style={{ backgroundColor: '#17B978',color:'#fff' }} variant="contained">Delete</Button></StyledTableCell>
 
             </StyledTableRow>
           ))}

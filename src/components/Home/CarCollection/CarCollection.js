@@ -8,11 +8,11 @@ import { Button } from '@mui/material';
 import { useHistory } from 'react-router-dom';
 
 const CarCollection = (props) => {
-    const { id,carName, image,price,model } = props.product;
+    const { _id,carName, image,price,model } = props.product;
     const history = useHistory();
     
-    const handleDoctorClick = () => {
-        history.push(`/product/${id}`);
+    const handlePurchaseClick = () => {
+        history.push(`/product/${_id}`);
     };
     return (
         <Grid item xs={4} sm={4} md={4}>
@@ -34,7 +34,7 @@ const CarCollection = (props) => {
                         Car model: {model}
                     </Typography>
                     <Typography>
-                    <Button sx={{ mt: 1 }} onClick={handleDoctorClick} style={{ backgroundColor: '#17B978', color: '#fff'}} variant="contained">Buy Now</Button>
+                    <Button sx={{ mt: 1 }} onClick={handlePurchaseClick} style={{ backgroundColor: '#17B978', color: '#fff'}} variant="contained">Buy Now</Button>
                     </Typography>
                 </CardContent>
             </Card>

@@ -18,7 +18,7 @@ const PurchaseCar = () => {
     const [open, setOpen] = React.useState(false);
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
-    const { carId } = useParams();
+    const { id } = useParams();
     const [product, setProduct] = useState({});
     const history = useHistory();
 
@@ -26,7 +26,7 @@ const PurchaseCar = () => {
         fetch('https://powerful-beyond-86436.herokuapp.com/car-collection')
             .then((res) => res.json())
             .then((data) => {
-                const productById = data.filter((product) => product.id === Number(carId));
+                const productById = data.filter((product) => product._id === id);
                 setProduct(productById.length ? productById[0] : {});
             });
     }, []);
