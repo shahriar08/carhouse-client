@@ -3,6 +3,7 @@ import Grid from '@mui/material/Grid';
 import { Typography, Button, Container } from '@mui/material';
 import Box from '@mui/material/Box';
 import car from './car-silver.png';
+import { Link } from 'react-router-dom';
 
 const verticalCenter = {
     display: 'flex',
@@ -11,7 +12,7 @@ const verticalCenter = {
 }
 const Banner = () => {
     return (
-        <Container sx={{ flexGrow: 0 }}>
+        <Container sx={{ flexGrow: 0}}>
             <Grid container spacing={2}>
                 <Grid item style={{ ...verticalCenter, textAlign: 'left' }} xs={12} md={6}>
                     <Box>
@@ -26,7 +27,7 @@ const Banner = () => {
                             Check our latest brand new car and <br />
                             get our best support from us.
                         </Typography>
-                        <Button variant="contained" sx={{ mx: "auto", width: 150 ,p:1}} style={{ backgroundColor: '#17B978' }}>Explore</Button>
+                        <Link style={{textDecoration: 'none'}} to='/car-collection'><Button variant="contained" sx={{ mx: "auto", width: 150 ,p:1}} style={{ backgroundColor: '#17B978' ,fontSize:'16px',textDecoration: 'none'}}>Explore</Button></Link>
                     </Box>
                 </Grid>
                 <Grid item xs={12} md={6} style={verticalCenter} >

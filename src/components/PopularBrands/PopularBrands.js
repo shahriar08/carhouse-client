@@ -11,7 +11,7 @@ const PopularBrands = () => {
                 <Grid container spacing={5}>
                     <Grid item xs={12} sm={2}>
                         <Box>
-                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 3 }}>
+                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 0 }}>
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
@@ -26,7 +26,7 @@ const PopularBrands = () => {
                     </Grid>
                     <Grid item xs={12} sm={2}>
                         <Box>
-                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 3 }}>
+                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 0}}>
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
@@ -41,7 +41,7 @@ const PopularBrands = () => {
                     </Grid>
                     <Grid item xs={12} sm={2}>
                         <Box>
-                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 3 }}>
+                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 0 }}>
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
@@ -55,7 +55,7 @@ const PopularBrands = () => {
                     </Grid>
                     <Grid item xs={12} sm={2}>
                         <Box>
-                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 3 }}>
+                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 0 }}>
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
@@ -69,7 +69,7 @@ const PopularBrands = () => {
                     </Grid>
                     <Grid item xs={12} sm={2}>
                         <Box>
-                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 3 }}>
+                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 0 }}>
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"
@@ -83,7 +83,7 @@ const PopularBrands = () => {
                     </Grid>
                     <Grid item xs={12} sm={2}>
                         <Box>
-                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 3 }}>
+                            <Card sx={{ minWidth: 85, border: 0, boxShadow: 0 }}>
                                 <CardActionArea>
                                     <CardMedia
                                         component="img"

@@ -12,7 +12,7 @@ const WhyChooseUs = () => {
                 <Grid container spacing={5}>
                     <Grid item xs={12} sm={4}>
                         <Box>
-                            <Card sx={{ width: 275, border: 0,p:2, boxShadow: 1,height:230 }}>
+                            <Card sx={{ width: 275, border: 0,p:2, boxShadow: 1,height:250 }}>
                                 <CardActionArea>
                                     <Avatar sx={{ width: 56, height: 56, mx: 'auto' }} alt="Remy Sharp" src="https://i.ibb.co/jrXQsp9/person.png" />
                                 </CardActionArea>
@@ -27,7 +27,7 @@ const WhyChooseUs = () => {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Box>
-                            <Card sx={{ width: 275, border: 0,p:2, boxShadow: 1,height:230 }}>
+                            <Card sx={{ width: 275, border: 0,p:2, boxShadow: 1,height:250 }}>
                                 <CardActionArea>
                                     <Avatar sx={{ width: 56, height: 56, mx: 'auto' }} alt="Remy Sharp" src="https://i.ibb.co/8g3kdfz/award.png" />
                                 </CardActionArea>
@@ -42,7 +42,7 @@ const WhyChooseUs = () => {
                     </Grid>
                     <Grid item xs={12} sm={4}>
                         <Box>
-                            <Card sx={{ width: 275, border: 0,p:2, boxShadow: 1, alignItems: 'center',height:230 }}>
+                            <Card sx={{ width: 275, border: 0,p:2, boxShadow: 1, alignItems: 'center',height:250 }}>
                                 <CardActionArea>
                                     <Avatar sx={{ width: 56, height: 56, mx: 'auto' }} alt="Remy Sharp" src="https://i.ibb.co/MZfd4yc/payment.png" />
                                 </CardActionArea>
