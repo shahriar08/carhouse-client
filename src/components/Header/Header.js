@@ -60,6 +60,9 @@ const Header = () => {
           <ListItemText><Link className={navItem} to="/car-collection"><Button style={{ color: '#17B978', fontWeight: 'bold', fontSize: 17 }} variant="text" color="inherit">Car Collection</Button></Link></ListItemText>
         </ListItem>
         <ListItem button >
+          <ListItemText><Link className={navItem} to="/car-collection"><Button style={{ color: '#17B978', fontWeight: 'bold', fontSize: 17 }} variant="text" color="inherit">Reviews</Button></Link></ListItemText>
+        </ListItem>
+        <ListItem button >
           <ListItemText> <Link className={navItem} to="/dashboard"><Button style={{ color: '#17B978', fontWeight: 'bold', fontSize: 17 }} variant="text" color="inherit">Dashboard</Button></Link></ListItemText>
         </ListItem>
         <ListItem button >
@@ -105,6 +108,7 @@ const Header = () => {
                 <Box className={navItemContainer} sx={{ mx: "auto" }}>
                   <Link className={navItem} to="/home"><Button style={{ color: '#17B978', fontWeight: 'bold', fontSize: 17 }} variant="text" color="inherit">Home</Button></Link>
                   <Link className={navItem} to="/car-collection"><Button style={{ color: '#17B978', fontWeight: 'bold', fontSize: 17 }} variant="text" color="inherit">Car Collection</Button></Link>
+                  <Link className={navItem}><Button style={{ color: '#17B978', fontWeight: 'bold', fontSize: 17 }} variant="text" color="inherit">Reviews</Button></Link>
                   <Link className={navItem} to="/dashboard"><Button style={{ color: '#17B978', fontWeight: 'bold', fontSize: 17 }} variant="text" color="inherit">Dashboard</Button></Link>
 
                   {!user?.email && <Link className={navItem} to="/login"><Button style={{ color: '#17B978', fontWeight: 'bold', fontSize: 17 }} variant="outlined" color="inherit">Sign In</Button></Link>}

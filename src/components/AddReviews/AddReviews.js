@@ -53,8 +53,8 @@ const AddReviews = () => {
     }
 
     return (
-        <Container style={{p:4}}>
-            <form className="form-group row container mx-auto p-5 m-5" onSubmit={handleSubmit(onSubmit)}>
+        <Container style={{p:4}} >
+            <form id="review" className="form-group row container mx-auto p-5 m-5" onSubmit={handleSubmit(onSubmit)}>
                 <h1 className='text-danger m-3 mx-auto'>Add Review</h1>
                 
                 <Box sx={{m:2}} className="col-6">

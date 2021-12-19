@@ -30,6 +30,9 @@ function App() {
             <Route path="/home">
               <Home />
             </Route>
+            <Route path="/home/:review">
+            render={props => <Home key={props.match.params.term} {...props} />}
+            </Route>
             <Route path="/login">
               <Layout>
                 <Login />
